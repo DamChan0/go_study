@@ -11,7 +11,7 @@ import (
 func mustInt() {
 	scanner := bufio.NewScanner(os.Stdin)
 
-	for {
+	for { // go 안어이는 while문이 없음
 		fmt.Println("두 개의 정수를 입력하세요:")
 
 		if scanner.Scan() {
