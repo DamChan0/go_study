@@ -38,9 +38,9 @@ func main() {
 
 	fmt.Println(Fibo(2))
 
+	i := Scaler(1, 2, Level3)
 	g := Scaler(1, 2, Level1)
 	h := Scaler(1, 2, Level2)
-	i := Scaler(1, 2, Level3)
 	fmt.Println("g:", g, "h:", h, "i:", i)
 }
 
