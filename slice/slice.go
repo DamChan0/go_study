@@ -51,6 +51,25 @@ func main() {
 	fmt.Println(arr1) // 변하지 않는다
 	fmt.Println(slice5)
 
+	// append시 cpaactiy를 넘어가면 새로운 배열을 생성하고 기존 배열을 값을 복사하기 때문에 slice11은 slice10과 다른 배열을 가리킨다
+
+	var slice10 = make([]int, 5, 5)
+	slice11 := append(slice10, 6)
+
+	slice10[1] = 100
+	fmt.Println(slice10)
+	fmt.Println(slice11)
+
+	slice12 := []int{1, 2, 3, 4, 5}
+	addNum(slice12)
+	fmt.Println("slice12 after addNum:", slice12)
+	addNumPtr(&slice12)
+	fmt.Println("slice12 after addNumPtr:", slice12)
+
+	slice13 := []int{1, 2, 3, 4, 5}
+	slice13 = addNumReturnSlice(slice13)
+	fmt.Println("slice13 after addNumReturnSlice:", slice13)
+
 }
 
 func changeArray(arr *[6]int) {
@@ -59,6 +78,23 @@ func changeArray(arr *[6]int) {
 
 func changeSlice(slice []int) {
 	slice[2] = 100
+}
+
+func addNum(slice []int) {
+	slice = append(slice, 100)
+	fmt.Println("slice in addNum:", slice)
+}
+
+func addNumPtr(slice *[]int) {
+	*slice = append(*slice, 100)
+	fmt.Println("slice in addNum:", slice)
+}
+
+// slice의 경우에 아래와 같이 새로운slice를 반환하는 방식을 더 권장한다, slice는 값 타입으로 쓰는 것이 좋다.
+
+func addNumReturnSlice(slice []int) []int {
+	slice = append(slice, 100)
+	return slice
 }
 
 // slice 는 배열을 가리키는 포인터이다 구조체로 구현되어 있으며, 길이와 용량을 가지고 있다 data 필드는 포인터이며, 실제 데이터를 가리킨다
